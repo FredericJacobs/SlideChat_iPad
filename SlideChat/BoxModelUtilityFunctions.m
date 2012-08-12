@@ -31,7 +31,7 @@
 		double dSize = fileSize / 1000.0f;
 		result_str = [NSString stringWithFormat: @"%1.1f KB", dSize];
 	} else {
-		result_str = [NSString stringWithFormat: @"%d bytes", fileSize];
+		result_str = [NSString stringWithFormat: @"%lld bytes", fileSize];
 	}
 
 	return result_str;

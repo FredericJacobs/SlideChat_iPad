@@ -10,7 +10,7 @@
 
 @implementation SCSync
 
-@synthesize username;
+
 
 + (id)sharedManager {
     static SCSync *sharedMyManager = nil;
@@ -19,6 +19,24 @@
         sharedMyManager = [[self alloc] init];
     });
     return sharedMyManager;
+}
+
+- (void) setToken:(NSString*)_token{
+    
+    self.token = _token;
+    
+}
+- (void) setUsername:(NSString*)_username{
+    self.username = _username;
+}
+
+- (NSString*) username{
+    
+    return [NSString stringWithString:username];
+}
+- (NSString*) token{
+    
+    return [NSString stringWithString:token];
 }
 
 - (id)init {

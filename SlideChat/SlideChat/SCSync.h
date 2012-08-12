@@ -12,9 +12,13 @@
     
     NSString *username;
     NSString *token;
-    
+    NSError *error;
 }
-@property NSString *username;
+- (void) setToken:(NSString*)token;
+- (void) setUsername:(NSString*)username;
+- (NSString*) username;
+- (NSString*) token;
+
 + (id)sharedManager;
 
 @end
