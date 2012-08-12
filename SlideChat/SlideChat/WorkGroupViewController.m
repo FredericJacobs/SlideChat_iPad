@@ -106,11 +106,15 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
         
 }
 
+- (void) goToDocumentMode{
+    mode = 3;
+    [self redrawView];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 1 && indexPath.row == [documents count]) {
-        mode = 3;
-        [self redrawView];
+        [self goToDocumentMode];
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
         return;
     }
@@ -288,6 +292,7 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
             presentation = [[UIButton alloc]init];
             [presentation setImage:[UIImage imageNamed:@"icon.png"] forState:UIControlStateNormal];
             presentation.frame = CGRectMake(899, 707, 72, 72);
+            [presentation addTarget:self action:@selector(goToDocumentMode) forControlEvents:UIControlStateSelected];
             [self.view addSubview:presentation];
         }
     }
@@ -300,6 +305,8 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
 {
 	return YES;
 }
+
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if([touches count] == 2){
