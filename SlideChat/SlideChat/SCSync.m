@@ -30,6 +30,14 @@
     self.username = _username;
 }
 
+- (NSArray*) getFiles {
+    if (files != nil) {
+        return files;
+    }
+    
+return @[  ];
+}
+
 - (NSString*) username{
     
     return [NSString stringWithString:username];
@@ -44,11 +52,6 @@
             username = @"Fred";
     }
     return self;
-}
-
-
-- (void)dealloc {
-    // Should never be called, but just here for clarity really.
 }
 
 

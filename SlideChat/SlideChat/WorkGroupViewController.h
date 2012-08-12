@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Opentok/Opentok.h>
 
+#define kMinimumPinchDelta 100
+
 @interface WorkGroupViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>{
     
     IBOutlet UITableView *usersAndFiles;
@@ -19,6 +21,8 @@
     OTPublisher*ot_publisher;
     NSString *kSessionIdea;
     NSMutableArray *subscribersFeedViews;
+    CGFloat  initialDistance;
+    UIButton *presentation;
 }
 
 - (void)doConnect;

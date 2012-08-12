@@ -9,5 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface ChatWindowFactory : NSObject
-+ (CGRect) windowFactoryForXPeerConnections:(NSInteger)peers andView:(NSInteger)view;
+
+// modes are 1=fullscreen, 2= hybrid 3 = doc oriented
+
++ (CGRect) windowFactoryForXPeerConnections:(NSInteger)peers mode:(NSInteger)modenumber andView:(NSInteger)view;
++ (BOOL) tableViewIsVisibleForPeers:(NSInteger)peers;
+
 @end

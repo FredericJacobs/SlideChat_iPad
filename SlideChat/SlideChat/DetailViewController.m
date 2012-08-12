@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "WorkGroupViewController.h"
+#define MAIN_BORDER_TOP 32
 
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -31,6 +32,8 @@
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }        
 }
+
+
 
 - (void)configureView
 {
@@ -59,6 +62,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+
 }
 
 - (void)viewDidUnload

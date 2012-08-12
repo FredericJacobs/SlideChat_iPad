@@ -9,6 +9,8 @@
 #import "WorkGroupViewController.h"
 #import "SCSync.h"
 #import "ChatWindowFactory.h"
+#import "CGPointUtils.h"
+#import "DocumentViewController.h"
 
 @interface WorkGroupViewController ()
 
@@ -28,7 +30,7 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         documents = @[ @"" ];
-        users = @[ @"Arnaud", @"Fred", @"Peter", @"Reid", @"David", @"Jack" ];
+        users = @[ @"Fred",@"Arnaud", @"Peter", @"Reid", @"David", @"Jack" ];
         subscribersFeedViews = [NSMutableArray array];
     }
     return self;
@@ -65,6 +67,14 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
         
 }
 
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
@@ -95,7 +105,6 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     
     [self doConnect];
 }
-
 
 #pragma OpenTok
 
@@ -184,6 +193,8 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     [alert show];
 }
 
+
+
 - (void) redrawView {
     
     for (int i = 0; i < [subscribersFeedViews count]; i++) {
@@ -192,20 +203,88 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
         
         OTSubscriber *subscriber = [subscribersFeedViews objectAtIndex:i];
    
-        
         [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:1.0];
-        subscriber.view.frame = [ChatWindowFactory windowFactoryForXPeerConnections:([subscribersFeedViews count]-1) andView:i];
+        [UIView setAnimationDuration:1.5];
+        subscriber.view.frame = [ChatWindowFactory windowFactoryForXPeerConnections:([subscribersFeedViews count]-1) mode:2 andView:i];
          [self.view addSubview:subscriber.view];
-        [self.usersAndFiles reloadData];
-        
     }
     [UIView commitAnimations];
+    
+    if ([ChatWindowFactory tableViewIsVisibleForPeers:[subscribersFeedViews count]]){
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1.5];
+        [usersAndFiles setHidden:FALSE];
+        if (presentation != nil) {
+            [presentation removeFromSuperview];
+            presentation = nil;
+        }
+        [UIView commitAnimations];
+    }
+    else {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1.5];
+        [usersAndFiles setHidden:TRUE];
+        [UIView commitAnimations];
+        if (presentation == nil) {
+            presentation = [[UIButton alloc]init];
+            [presentation setImage:[UIImage imageNamed:@"icon.png"] forState:UIControlStateNormal];
+            presentation.frame = CGRectMake(899, 707, 72, 72);
+            [self.view addSubview:presentation];
+        }
+    }
+    
+    [self.usersAndFiles reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if([touches count] == 2){
+        NSArray *twoTouches = [touches allObjects];
+        UITouch *first = [twoTouches objectAtIndex:0];
+        UITouch *second = [twoTouches objectAtIndex:1];
+        initialDistance = distanceBetweenPoints([first locationInView: self.view],[second locationInView:self.view]);
+    }
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    if([touches count] == 2)
+    {
+        NSArray *twoTouches = [touches allObjects];
+        UITouch *first = [twoTouches objectAtIndex:0];
+        UITouch *second = [twoTouches objectAtIndex:1];
+        CGFloat currentDistance = distanceBetweenPoints(
+                                                        [first locationInView: self.view],
+                                                        [second locationInView:self.view]);
+        
+        if(initialDistance == 0)
+            initialDistance = currentDistance;
+        else if (currentDistance - initialDistance >kMinimumPinchDelta){
+            [self performSelector:@selector(eraselabel)
+                       withObject:nil
+                       afterDelay:0];
+        }
+        
+        else if(initialDistance - currentDistance >kMinimumPinchDelta){
+                [self performSelector:@selector(eraselabel)
+                       withObject:nil
+                       afterDelay:0];
+            
+        }
+    }
+}
+
+- (void) eraselabel {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    initialDistance = 0;
+    
+    
 }
 
 @end

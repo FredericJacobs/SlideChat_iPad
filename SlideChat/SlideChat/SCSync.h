@@ -13,11 +13,15 @@
     NSString *username;
     NSString *token;
     NSError *error;
+    NSArray *files;
 }
 - (void) setToken:(NSString*)token;
 - (void) setUsername:(NSString*)username;
 - (NSString*) username;
 - (NSString*) token;
+
+- (NSArray *) getFiles;
+
 
 + (id)sharedManager;
 
