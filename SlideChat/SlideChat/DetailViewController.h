@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>{
+@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate>{
     
+    IBOutlet UIWebView *webview;
     
 }
 
 @property (strong, nonatomic) id detailItem;
-
+@property (strong, nonatomic) IBOutlet UIWebView *webview;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 - (IBAction)joinSession:(id)sender;

@@ -10,7 +10,6 @@
 #import "SCSync.h"
 #import "ChatWindowFactory.h"
 #import "CGPointUtils.h"
-#import "DocumentViewController.h"
 
 @interface WorkGroupViewController ()
 
@@ -29,12 +28,41 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        documents = @[ @"" ];
+        documents = [[SCSync sharedManager] getFiles];
         users = @[ @"Fred",@"Arnaud", @"Peter", @"Reid", @"David", @"Jack" ];
         subscribersFeedViews = [NSMutableArray array];
+        documentViewer = [[UIWebView alloc]initWithFrame:CGRectMake(200, 236, 824, 704)];
+        documentViewer.delegate = self;
+        bar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0,192,1024,44)];
+        bar.delegate = self;
+        UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@"Document Previewer - Box Folder"];
+        UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleBordered target:self action:@selector(dismissPreviewer)];
+        item.leftBarButtonItem = dismiss;
+        [bar pushNavigationItem:item animated:YES];
+        self.navigationController.title = @"Document Previewer";
+        
+        mode = 2;
     }
     return self;
 }
+
+- (void) dismissPreviewer {
+    
+    mode = 2;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.5];
+    
+    [bar removeFromSuperview];
+    [documentViewer removeFromSuperview];
+    usersAndFiles.frame = CGRectMake(824, 0, 200, 748);
+    
+    [UIView commitAnimations];
+    
+    [self redrawView];
+    
+}
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
@@ -52,6 +80,7 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
         return @"Docs";
     }
     
+    
     else return nil;
 }
 
@@ -62,17 +91,24 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     }
     
     else {
-        return [documents count];
+        return ([documents count]+1);
     }
         
 }
 
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.section == 1 && indexPath.row == [documents count]) {
+        mode = 3;
+        [self redrawView];
+        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+        return;
+    }
     
-    
+    if (indexPath.section == 1) {
+        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+        return;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,7 +124,11 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     }
     
     if (indexPath.section == 1) {
-        cell.textLabel.text = [documents objectAtIndex:indexPath.row];
+        if (indexPath.row == ([documents count])) {
+            cell.textLabel.text = @"Open Previewer";
+            return cell;
+        }
+        cell.textLabel.text = [[documents objectAtIndex:indexPath.row] objectForKey:@"name"];
     }
     
     return cell;
@@ -198,18 +238,27 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
 - (void) redrawView {
     
     for (int i = 0; i < [subscribersFeedViews count]; i++) {
-        
-        NSLog(@"Array size :%i Index : %i",[subscribersFeedViews count],i);
-        
+    
         OTSubscriber *subscriber = [subscribersFeedViews objectAtIndex:i];
    
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:1.5];
-        subscriber.view.frame = [ChatWindowFactory windowFactoryForXPeerConnections:([subscribersFeedViews count]-1) mode:2 andView:i];
+        subscriber.view.frame = [ChatWindowFactory windowFactoryForXPeerConnections:([subscribersFeedViews count]-1) mode:mode andView:i];
          [self.view addSubview:subscriber.view];
     }
     [UIView commitAnimations];
     
+    if (mode == 3) {
+        [self.view addSubview:bar];
+        [self.view addSubview:documentViewer];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        usersAndFiles.frame = CGRectMake(0, 236, 200, 704);
+        [UIView commitAnimations];
+    }
+    
+    
+    if (mode == 2) {
     if ([ChatWindowFactory tableViewIsVisibleForPeers:[subscribersFeedViews count]]){
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:1.5];
@@ -234,6 +283,7 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     }
     
     [self.usersAndFiles reloadData];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

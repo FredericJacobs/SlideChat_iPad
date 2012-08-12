@@ -37,6 +37,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <webView contentMode="scaleToFill" id="KzR-yU-7pv">
+                                <rect key="frame" x="0.0" y="0.0" width="703" height="704"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4" id="fTB-EZ-Hw5"/>
+                                </connections>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -51,10 +59,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="27" id="29"/>
+                        <outlet property="webview" destination="KzR-yU-7pv" id="PLV-FF-4UX"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="448" y="248"/>
+            <point key="canvasLocation" x="534" y="290"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="18">
@@ -136,6 +145,7 @@
             <relationships>
                 <relationship kind="action" name="joinSession:"/>
                 <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="webview" candidateClass="UIWebView"/>
             </relationships>
         </class>
         <class className="MasterViewController" superclassName="UITableViewController">

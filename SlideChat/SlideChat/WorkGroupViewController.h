@@ -11,7 +11,7 @@
 
 #define kMinimumPinchDelta 100
 
-@interface WorkGroupViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>{
+@interface WorkGroupViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate, UIWebViewDelegate, UINavigationBarDelegate>{
     
     IBOutlet UITableView *usersAndFiles;
     NSArray *users;
@@ -23,12 +23,16 @@
     NSMutableArray *subscribersFeedViews;
     CGFloat  initialDistance;
     UIButton *presentation;
+    NSInteger mode;
+    UIWebView *documentViewer;
+    UINavigationBar *bar;
+    
 }
 
 - (void)doConnect;
 - (void)doPublish;
 - (void)showAlert:(NSString*)string;
-
+@property (nonatomic, retain) UIWebView *documentViewer;
 @property (nonatomic, retain) IBOutlet UITableView *usersAndFiles;
 @property (nonatomic, retain) NSString *kSessionIdea;
 @end

@@ -33,6 +33,7 @@
 {
     [super viewDidLoad];
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController.webview.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -138,7 +139,81 @@
 {
     if (indexPath.section == 0) {
         self.detailViewController.detailDescriptionLabel.text = [sessionIds objectAtIndex:indexPath.row];
+        if ([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNjo1MyBQRFQgMjAxMn4wLjk4MzYxNTQ2fg"]) {
+            
+            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/50276675256da40002000006/minimal";
+            
+            //Create a URL object.
+            NSURL *url = [NSURL URLWithString:urlAddress];
+            
+            //URL Requst Object
+            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+            
+            //Load the request in the UIWebView.
+            [self.detailViewController.webview loadRequest:requestObj];
+            
+        }
+        else if ([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzowOCBQRFQgMjAxMn4wLjkwOTEyMTMzfg"]){
+            
+            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/50276684256da40002000008/minimal";
+            
+            //Create a URL object.
+            NSURL *url = [NSURL URLWithString:urlAddress];
+            
+            //URL Requst Object
+            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+            
+            //Load the request in the UIWebView.
+            [self.detailViewController.webview loadRequest:requestObj];
+            
+        }
+        
+        else if ([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzozOCBQRFQgMjAxMn4wLjg3OTQ3MjJ-"]){
+            
+            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/502766a2256da4000200000a/minimal";
+            
+            //Create a URL object.
+            NSURL *url = [NSURL URLWithString:urlAddress];
+            
+            //URL Requst Object
+            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+            
+            //Load the request in the UIWebView.
+            [self.detailViewController.webview loadRequest:requestObj];
+            
+        }
+        
+        else if([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"2_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzo1NCBQRFQgMjAxMn4wLjM4NzEzMTkzfg"]){
+            
+            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/502766b2256da4000200000c/minimal";
+            
+            //Create a URL object.
+            NSURL *url = [NSURL URLWithString:urlAddress];
+            
+            //URL Requst Object
+            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+            
+            //Load the request in the UIWebView.
+            [self.detailViewController.webview loadRequest:requestObj];
+        }
+        
+        else if([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"2_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxODowNiBQRFQgMjAxMn4wLjQzNTQ0NDY1fg"]){
+            
+            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/502766be256da4000200000e/minimal";
+            
+            //Create a URL object.
+            NSURL *url = [NSURL URLWithString:urlAddress];
+            
+            //URL Requst Object
+            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+            
+            //Load the request in the UIWebView.
+            [self.detailViewController.webview loadRequest:requestObj];
+        }
+
     }
+
+    
     
 }
 

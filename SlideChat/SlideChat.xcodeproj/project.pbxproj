@@ -69,7 +69,6 @@
 		B68DE32915D712C700CD5CC1 /* WorkGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE32715D712C700CD5CC1 /* WorkGroupViewController.m */; };
 		B68DE32A15D712C700CD5CC1 /* WorkGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B68DE32815D712C700CD5CC1 /* WorkGroupViewController.xib */; };
 		B68DE32E15D716DD00CD5CC1 /* SCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE32D15D716DD00CD5CC1 /* SCUser.m */; };
-		B6BCFB0D15D817F3005ECB9D /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BCFB0B15D817F3005ECB9D /* DocumentViewController.m */; };
 		B6E3B9CA15D7302800DCD9E4 /* BoxCommonUISetup.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E3B9C315D7302800DCD9E4 /* BoxCommonUISetup.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B6E3B9CC15D7302800DCD9E4 /* BoxNetworkOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E3B9C715D7302800DCD9E4 /* BoxNetworkOperationManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B6E3B9CD15D7302800DCD9E4 /* BoxBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E3B9C915D7302800DCD9E4 /* BoxBrowserTableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -215,8 +214,6 @@
 		B68DE32815D712C700CD5CC1 /* WorkGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WorkGroupViewController.xib; path = SlideChat/WorkGroupViewController.xib; sourceTree = "<group>"; };
 		B68DE32C15D716DD00CD5CC1 /* SCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCUser.h; sourceTree = "<group>"; };
 		B68DE32D15D716DD00CD5CC1 /* SCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUser.m; sourceTree = "<group>"; };
-		B6BCFB0A15D817F3005ECB9D /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
-		B6BCFB0B15D817F3005ECB9D /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
 		B6E3B9C115D7302800DCD9E4 /* BoxAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxAPIKey.h; sourceTree = "<group>"; };
 		B6E3B9C215D7302800DCD9E4 /* BoxCommonUISetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxCommonUISetup.h; sourceTree = "<group>"; };
 		B6E3B9C315D7302800DCD9E4 /* BoxCommonUISetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxCommonUISetup.m; sourceTree = "<group>"; };
@@ -341,8 +338,6 @@
 				B68DE32615D712C700CD5CC1 /* WorkGroupViewController.h */,
 				B68DE32715D712C700CD5CC1 /* WorkGroupViewController.m */,
 				B68DE32815D712C700CD5CC1 /* WorkGroupViewController.xib */,
-				B6BCFB0A15D817F3005ECB9D /* DocumentViewController.h */,
-				B6BCFB0B15D817F3005ECB9D /* DocumentViewController.m */,
 				B68DE32C15D716DD00CD5CC1 /* SCUser.h */,
 				B68DE32D15D716DD00CD5CC1 /* SCUser.m */,
 				B605C76515D70D9D0026B8AD /* SCWorkGroup.h */,
@@ -740,7 +735,6 @@
 				B6470AC115D73CE4001BB905 /* SCSync.m in Sources */,
 				B6470AC415D743CD001BB905 /* ChatWindowFactory.m in Sources */,
 				B6E8060815D7F410002915B9 /* CGPointUtils.m in Sources */,
-				B6BCFB0D15D817F3005ECB9D /* DocumentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@
 @end
 
 @implementation DetailViewController
+@synthesize webview;
 
 #pragma mark - Managing the detail item
 
@@ -38,9 +39,11 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
+    NSLog(@"%@",self.detailDescriptionLabel.text);
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
+        
+        NSLog(@"%@",self.detailDescriptionLabel.text);
     }
 }
 
@@ -83,6 +86,7 @@
     barButtonItem.title = NSLocalizedString(@"Master", @"Master");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
+    
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -90,6 +94,7 @@
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+    NSLog(@"%@",self.detailDescriptionLabel.text);
 }
 
 @end
