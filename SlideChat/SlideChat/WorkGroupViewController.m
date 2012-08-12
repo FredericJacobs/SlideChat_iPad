@@ -32,6 +32,16 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
         users = @[ @"Fred",@"Arnaud", @"Peter", @"Reid", @"David", @"Jack" ];
         subscribersFeedViews = [NSMutableArray array];
         documentViewer = [[UIWebView alloc]initWithFrame:CGRectMake(200, 236, 824, 704)];
+        NSString *urlAddress = @"http://www.soundtransit.org/documents/pdf/projects/link/FACT_Link.pdf";
+        
+        //Create a URL object.
+        NSURL *url = [NSURL URLWithString:urlAddress];
+        
+        //URL Requst Object
+        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+        
+        //Load the request in the UIWebView.
+        [documentViewer loadRequest:requestObj];
         documentViewer.delegate = self;
         bar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0,192,1024,44)];
         bar.delegate = self;
