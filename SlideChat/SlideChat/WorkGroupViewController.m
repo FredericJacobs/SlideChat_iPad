@@ -28,7 +28,7 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         documents = @[ @"" ];
-        users = @[ @"Arnaud", @"Steve", @"Peter", @"Reid" ];
+        users = @[ @"Arnaud", @"Fred", @"Peter", @"Reid", @"David", @"Jack" ];
         subscribersFeedViews = [NSMutableArray array];
     }
     return self;
@@ -56,7 +56,7 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
         
     if (section == 0) {
-        return [users count];
+        return [subscribersFeedViews count];
     }
     
     else {
@@ -121,13 +121,23 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
 
 - (void)session:(OTSession*)session didDropStream:(OTStream*)stream{
 
-    [subscribersFeedViews removeObject:stream];
-    [self redrawView];
+    NSLog(@"session didDropStream (%@)", stream.streamId);
+
+    for (int i = 0; i < [subscribersFeedViews count]; i++) {
+    
+        OTSubscriber *subscribers = [subscribersFeedViews objectAtIndex:i];
+        if([subscribers.stream.streamId isEqualToString:stream.streamId]){
+            [subscribersFeedViews removeObjectAtIndex:i];
+            [self redrawView];
+            return;
+        }
+    }
+
 }
 
 - (void)subscriberDidConnectToStream:(OTSubscriber*)subscriber
 {
-    [self redrawView];
+
 }
 
 - (void)publisher:(OTPublisher*)publisher didFailWithError:(OTError*) error {
@@ -176,14 +186,21 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
 
 - (void) redrawView {
     
-    // take other feeds and fill
     for (int i = 0; i < [subscribersFeedViews count]; i++) {
+        
+        NSLog(@"Array size :%i Index : %i",[subscribersFeedViews count],i);
+        
         OTSubscriber *subscriber = [subscribersFeedViews objectAtIndex:i];
-        subscriber.view.frame = [ChatWindowFactory windowFactoryForXPeerConnections:([ot_session connectionCount]-1) andView:i];
-        [subscriber.view removeFromSuperview];
-        [self.view addSubview:subscriber.view];
+   
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1.0];
+        subscriber.view.frame = [ChatWindowFactory windowFactoryForXPeerConnections:([subscribersFeedViews count]-1) andView:i];
+         [self.view addSubview:subscriber.view];
+        [self.usersAndFiles reloadData];
+        
     }
-    
+    [UIView commitAnimations];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
