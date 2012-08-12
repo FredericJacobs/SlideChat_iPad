@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "WorkGroupViewController.h"
 
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -38,6 +39,19 @@
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
+}
+
+- (IBAction)joinSession:(id)sender{
+    
+    [self joinSessionwithID:self.detailDescriptionLabel.text];
+}
+
+- (void) joinSessionwithID:(NSString*)sessionID{
+    
+    WorkGroupViewController *workGroup = [[WorkGroupViewController alloc]initWithNibName:@"WorkGroupViewController" bundle:nil];
+    workGroup.kSessionIdea = self.detailDescriptionLabel.text;
+    [self presentModalViewController:workGroup animated:YES];
+    
 }
 
 - (void)viewDidLoad

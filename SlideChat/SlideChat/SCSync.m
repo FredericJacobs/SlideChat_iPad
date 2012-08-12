@@ -41,15 +41,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"username"]isEqualToString:@""] || [[NSUserDefaults standardUserDefaults]objectForKey:@"username" ] == nil){
-            
-        }
-        
-        else{
-            username = [[NSUserDefaults standardUserDefaults]objectForKey:@"username" ];
-            token =[[NSUserDefaults standardUserDefaults]objectForKey:@"token"];
-        }
-
+            username = @"Fred";
     }
     return self;
 }

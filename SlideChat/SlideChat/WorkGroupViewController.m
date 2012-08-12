@@ -18,8 +18,6 @@
 @synthesize usersAndFiles;
 
 
-static double widgetHeight = 240;
-static double widgetWidth = 320;
 static NSString* const kApiKey = @"17075832";
 static NSString* const kToken = @"devtoken";
 static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
@@ -30,7 +28,8 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         documents = @[ @"" ];
-        users = @[ @"" ];
+        users = @[ @"Arnaud", @"Steve", @"Peter", @"Reid" ];
+        subscribersFeedViews = [NSMutableArray array];
     }
     return self;
 }
@@ -70,6 +69,10 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    
     if (indexPath.section == 0) {
         cell.textLabel.text = [users objectAtIndex:indexPath.row];
     }
@@ -77,7 +80,6 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     if (indexPath.section == 1) {
         cell.textLabel.text = [documents objectAtIndex:indexPath.row];
     }
-    
     
     return cell;
     
@@ -88,6 +90,10 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    ot_session = [[OTSession alloc] initWithSessionId:self.kSessionIdea delegate:self];
+    
+    [self doConnect];
 }
 
 
@@ -109,19 +115,19 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
 
 - (void)session:(OTSession*)mySession didReceiveStream:(OTStream*)stream
 {
-    NSLog(@"session didReceiveStream (%@)", stream.streamId);
-    
+    [subscribersFeedViews addObject:[[OTSubscriber alloc]initWithStream:stream delegate:self]];
+    [self redrawView];
 }
 
 - (void)session:(OTSession*)session didDropStream:(OTStream*)stream{
-  
+
+    [subscribersFeedViews removeObject:stream];
+    [self redrawView];
 }
 
 - (void)subscriberDidConnectToStream:(OTSubscriber*)subscriber
 {
-    NSLog(@"subscriberDidConnectToStream (%@)", subscriber.stream.connection.connectionId);
-    [subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth, widgetHeight)];
-    [self.view addSubview:subscriber.view];
+    [self redrawView];
 }
 
 - (void)publisher:(OTPublisher*)publisher didFailWithError:(OTError*) error {
@@ -145,9 +151,6 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
     ot_publisher = [[OTPublisher alloc] initWithDelegate:self];
     [ot_publisher setName:[[SCSync sharedManager] username]];
     [ot_session publish:ot_publisher];
-    [self.view addSubview:ot_publisher.view];
-    int connectionCount = [ot_session connectionCount];
-    [ot_publisher.view setFrame:[ChatWindowFactory windowFactoryForXPeerConnections:connectionCount andView:0]];
 }
 
 - (void)doConnect
@@ -169,6 +172,18 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+- (void) redrawView {
+    
+    // take other feeds and fill
+    for (int i = 0; i < [subscribersFeedViews count]; i++) {
+        OTSubscriber *subscriber = [subscribersFeedViews objectAtIndex:i];
+        subscriber.view.frame = [ChatWindowFactory windowFactoryForXPeerConnections:([ot_session connectionCount]-1) andView:i];
+        [subscriber.view removeFromSuperview];
+        [self.view addSubview:subscriber.view];
+    }
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

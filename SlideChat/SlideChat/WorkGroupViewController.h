@@ -17,8 +17,8 @@
     SCWorkGroup *currentWorkGroup;
     OTSession *ot_session;
     OTPublisher*ot_publisher;
-    OTSubscriber*ot_subscriber;
-
+    NSString *kSessionIdea;
+    NSMutableArray *subscribersFeedViews;
 }
 
 - (void)doConnect;
@@ -26,5 +26,5 @@
 - (void)showAlert:(NSString*)string;
 
 @property (nonatomic, retain) IBOutlet UITableView *usersAndFiles;
-
+@property (nonatomic, retain) NSString *kSessionIdea;
 @end

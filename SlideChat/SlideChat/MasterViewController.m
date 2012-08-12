@@ -22,6 +22,7 @@
     
     profileElements = @[ @"Notifications", @"Settings", @"Sign Out" ];
     workGroups = @[ @"#webapp", @"#iphone", @"#android", @"#support",@"#explore"];
+    sessionIds = @[ @"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNjo1MyBQRFQgMjAxMn4wLjk4MzYxNTQ2fg", @"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzowOCBQRFQgMjAxMn4wLjkwOTEyMTMzfg", @"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzozOCBQRFQgMjAxMn4wLjg3OTQ3MjJ-", @"2_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzo1NCBQRFQgMjAxMn4wLjM4NzEzMTkzfg", @"2_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxODowNiBQRFQgMjAxMn4wLjQzNTQ0NDY1fg"];
     
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -136,7 +137,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        self.detailViewController.detailDescriptionLabel.text = [workGroups objectAtIndex:indexPath.row];
+        self.detailViewController.detailDescriptionLabel.text = [sessionIds objectAtIndex:indexPath.row];
     }
     
 }

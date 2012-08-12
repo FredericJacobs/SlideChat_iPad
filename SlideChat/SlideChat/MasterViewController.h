@@ -14,6 +14,7 @@
     
     NSArray *profileElements;
     NSArray *workGroups;
+    NSArray *sessionIds;
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;

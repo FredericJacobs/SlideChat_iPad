@@ -41,6 +41,8 @@
 		B605C76215D709D10026B8AD /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B605C76115D709D10026B8AD /* libstdc++.dylib */; };
 		B605C76415D70A640026B8AD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B605C76315D70A640026B8AD /* libz.dylib */; };
 		B605C76715D70D9D0026B8AD /* SCWorkGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B605C76615D70D9D0026B8AD /* SCWorkGroup.m */; };
+		B637295615D7AC7D00848BB5 /* linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B637295415D7AC7D00848BB5 /* linen.jpg */; };
+		B637295715D7AC7D00848BB5 /* linen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B637295515D7AC7D00848BB5 /* linen@2x.jpg */; };
 		B643367615D72C1B0041FE2F /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = B643366715D72C1A0041FE2F /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B643367715D72C1B0041FE2F /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B643366915D72C1A0041FE2F /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B643367815D72C1B0041FE2F /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B643366B15D72C1A0041FE2F /* ASIFormDataRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -153,6 +155,8 @@
 		B605C76315D70A640026B8AD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B605C76515D70D9D0026B8AD /* SCWorkGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCWorkGroup.h; path = SlideChat/SCWorkGroup.h; sourceTree = "<group>"; };
 		B605C76615D70D9D0026B8AD /* SCWorkGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCWorkGroup.m; path = SlideChat/SCWorkGroup.m; sourceTree = "<group>"; };
+		B637295415D7AC7D00848BB5 /* linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = linen.jpg; sourceTree = "<group>"; };
+		B637295515D7AC7D00848BB5 /* linen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "linen@2x.jpg"; sourceTree = "<group>"; };
 		B643366215D72C1A0041FE2F /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
 		B643366315D72C1A0041FE2F /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		B643366415D72C1A0041FE2F /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
@@ -379,6 +383,8 @@
 		B605C70515D6F4E20026B8AD /* SlideChat */ = {
 			isa = PBXGroup;
 			children = (
+				B637295415D7AC7D00848BB5 /* linen.jpg */,
+				B637295515D7AC7D00848BB5 /* linen@2x.jpg */,
 				B605C70E15D6F4E20026B8AD /* AppDelegate.h */,
 				B605C70F15D6F4E20026B8AD /* AppDelegate.m */,
 				B605C71115D6F4E20026B8AD /* MainStoryboard.storyboard */,
@@ -622,6 +628,8 @@
 				B605C73A15D6FC430026B8AD /* icon.png in Resources */,
 				B605C74215D709420026B8AD /* opentok.bundle in Resources */,
 				B68DE32A15D712C700CD5CC1 /* WorkGroupViewController.xib in Resources */,
+				B637295615D7AC7D00848BB5 /* linen.jpg in Resources */,
+				B637295715D7AC7D00848BB5 /* linen@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

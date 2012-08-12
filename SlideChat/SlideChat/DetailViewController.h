@@ -16,4 +16,7 @@
 @property (strong, nonatomic) id detailItem;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+- (IBAction)joinSession:(id)sender;
+
 @end

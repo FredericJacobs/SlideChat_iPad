@@ -23,7 +23,6 @@ static NSString *const kTokenURL = @"login";
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
     
-    if (![self isLoggedIn]){
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Welcome to SlideChat"
                                                         message:nil delegate:self
@@ -32,70 +31,19 @@ static NSString *const kTokenURL = @"login";
         alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
         
         [alert show];
-        
-    }
     
-    else{
         [SCSync sharedManager];
-    }
     
     return YES;
     
 }
 
--(BOOL) isLoggedIn {
-    
-    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"username"]isEqualToString:@""] || [[NSUserDefaults standardUserDefaults]objectForKey:@"username" ] == nil){
-        return false;
-    }
-    
-    else{
-        return false;
-    }
-}
+
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     NSLog(@"Username:%@",[[alertView textFieldAtIndex:0] text]);
     NSLog(@"Password:%@",[[alertView textFieldAtIndex:1] text]);
-    
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://gentle-wildwood-8274.herokuapp.com/api/v1/tokens.json"]];
-    [request setPostValue:[[alertView textFieldAtIndex:0] text] forKey:@"email"];
-    [request setPostValue:[[alertView textFieldAtIndex:1] text] forKey:@"password"];
-    [request setDelegate:self];
-    [request startSynchronous];
-    NSError *error = [request error];
-    if (!error) {
-        NSData *responseData = [request responseData];
-        NSDictionary* json = [NSJSONSerialization
-                              JSONObjectWithData:responseData
-                              options:kNilOptions error:&error];
-        
-        
-        NSLog(@"%@",json);
-        
-        NSString *token = [json objectForKey:@"token"];
-        
-        if (token != nil) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            
-            [defaults setObject:token forKey:@"token"];
-            [defaults setObject:[[alertView textFieldAtIndex:0] text] forKey:@"username"];
-            [defaults synchronize];
-            NSLog(@"WORKED !!!!");
-        }
-        
-        else {
-            
-            token = nil;
-            NSLog(@"Failed !");
-        }
-        
-        
-    }
-    
-  
-        NSLog(@" %@", [[request error] localizedDescription]);
     
 }
 
