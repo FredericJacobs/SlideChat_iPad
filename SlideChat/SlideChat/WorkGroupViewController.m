@@ -19,9 +19,9 @@
 @synthesize usersAndFiles;
 
 
-static NSString* const kApiKey = @"17075832";
-static NSString* const kToken = @"devtoken";
-static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
+static NSString* const kApiKey = TOKBOX API KEY ;
+static NSString* const kToken = TOK BOX API TOKEN;
+static const NSString * BOX_API_KEY = YOUR BOX API KEY;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,7 +32,7 @@ static const NSString * BOX_API_KEY = @"x0dcfl3a1vjc56j0sg6cytjfm3dt5r05";
         users = @[ @"Fred",@"Arnaud", @"Peter", @"Reid", @"David", @"Jack" ];
         subscribersFeedViews = [NSMutableArray array];
         documentViewer = [[UIWebView alloc]initWithFrame:CGRectMake(200, 236, 824, 704)];
-        NSString *urlAddress = @"http://www.soundtransit.org/documents/pdf/projects/link/FACT_Link.pdf";
+        NSString *urlAddress = @"http://www.fredericjacobs.com";
         
         //Create a URL object.
         NSURL *url = [NSURL URLWithString:urlAddress];

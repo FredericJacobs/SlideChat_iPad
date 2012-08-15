@@ -1,0 +1,6 @@
+[submodule "opentok"]
+	path = opentok
+	url = git://github.com/opentok/opentok-ios-sdk.git
+[submodule "ASI"]
+	path = ASI
+	url = git://github.com/pokeb/asi-http-request.git

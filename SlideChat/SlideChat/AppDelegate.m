@@ -12,8 +12,7 @@
 
 @implementation AppDelegate
 
-static const NSString *kBaseAPI = @"http://radiant-inlet-5299.herokuapp.com/";
-static NSString *const kTokenURL = @"login";
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -22,28 +21,9 @@ static NSString *const kTokenURL = @"login";
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
-    
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Welcome to SlideChat"
-                                                        message:nil delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:@"Login", nil];
-        alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-        
-        [alert show];
-    
-        [SCSync sharedManager];
+    [SCSync sharedManager];
     
     return YES;
-    
-}
-
-
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    NSLog(@"Username:%@",[[alertView textFieldAtIndex:0] text]);
-    NSLog(@"Password:%@",[[alertView textFieldAtIndex:1] text]);
     
 }
 

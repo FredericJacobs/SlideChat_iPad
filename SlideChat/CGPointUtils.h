@@ -1,9 +1,9 @@
 //
 //  CGPointUtils.h
-//  pocket Kat
+//  SlideTime
 //
-//  Created by Aaron Klick on 10/10/09.
-//  Copyright 2009 Vantage Technic. All rights reserved.
+//  Created by Frederic Jacobs on 11/8/12.
+//  Copyright (c) 2012 Movies.io Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

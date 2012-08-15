@@ -34,9 +34,11 @@
 
 - (NSArray*) getFiles {
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.box.com/2.0/folders/351082569"]]];
+    ASIHTTPRequest *request = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.box.com/2.0/folders/"]]];
     
-    [request addRequestHeader:@"Authorization" value:@"BoxAuth api_key=x0dcfl3a1vjc56j0sg6cytjfm3dt5r05&auth_token=fkb12xhpz15ktzict2a8j5g4q0p60zmf"];
+    // check out http://developers.box.com/get-started/#authenticating
+    
+    //[request addRequestHeader:@"Authorization" value:];
     
     [request startSynchronous];
         // Use when fetching text data
@@ -56,12 +58,6 @@
         }
         json = nil;
         
-    
-    
-    
-
-    
-    
     if (files != nil) {
         return files;
     }

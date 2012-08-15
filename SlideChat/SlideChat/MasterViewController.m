@@ -22,7 +22,8 @@
     
     profileElements = @[ @"Notifications", @"Settings", @"Sign Out" ];
     workGroups = @[ @"#webapp", @"#iphone", @"#android", @"#support",@"#explore"];
-    sessionIds = @[ @"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNjo1MyBQRFQgMjAxMn4wLjk4MzYxNTQ2fg", @"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzowOCBQRFQgMjAxMn4wLjkwOTEyMTMzfg", @"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzozOCBQRFQgMjAxMn4wLjg3OTQ3MjJ-", @"2_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzo1NCBQRFQgMjAxMn4wLjM4NzEzMTkzfg", @"2_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxODowNiBQRFQgMjAxMn4wLjQzNTQ0NDY1fg"];
+    sessionIds = @[""]; //OpenTokBox Sessions for WorkGroups, please refer to : http://www.tokbox.com/opentok/ios/docs/index.html
+    
     
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -139,23 +140,8 @@
 {
     if (indexPath.section == 0) {
         self.detailViewController.detailDescriptionLabel.text = [sessionIds objectAtIndex:indexPath.row];
-        if ([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNjo1MyBQRFQgMjAxMn4wLjk4MzYxNTQ2fg"]) {
             
-            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/50276675256da40002000006/minimal";
-            
-            //Create a URL object.
-            NSURL *url = [NSURL URLWithString:urlAddress];
-            
-            //URL Requst Object
-            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-            
-            //Load the request in the UIWebView.
-            [self.detailViewController.webview loadRequest:requestObj];
-            
-        }
-        else if ([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzowOCBQRFQgMjAxMn4wLjkwOTEyMTMzfg"]){
-            
-            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/50276684256da40002000008/minimal";
+            NSString *urlAddress = LOAD YOUR OWN WEBVIEW ! ;
             
             //Create a URL object.
             NSURL *url = [NSURL URLWithString:urlAddress];
@@ -167,54 +153,6 @@
             [self.detailViewController.webview loadRequest:requestObj];
             
         }
-        
-        else if ([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"1_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzozOCBQRFQgMjAxMn4wLjg3OTQ3MjJ-"]){
-            
-            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/502766a2256da4000200000a/minimal";
-            
-            //Create a URL object.
-            NSURL *url = [NSURL URLWithString:urlAddress];
-            
-            //URL Requst Object
-            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-            
-            //Load the request in the UIWebView.
-            [self.detailViewController.webview loadRequest:requestObj];
-            
-        }
-        
-        else if([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"2_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxNzo1NCBQRFQgMjAxMn4wLjM4NzEzMTkzfg"]){
-            
-            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/502766b2256da4000200000c/minimal";
-            
-            //Create a URL object.
-            NSURL *url = [NSURL URLWithString:urlAddress];
-            
-            //URL Requst Object
-            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-            
-            //Load the request in the UIWebView.
-            [self.detailViewController.webview loadRequest:requestObj];
-        }
-        
-        else if([self.detailViewController.detailDescriptionLabel.text isEqualToString:@"2_MX4xNjE3ODgxMX5-U3VuIEF1ZyAxMiAwMToxODowNiBQRFQgMjAxMn4wLjQzNTQ0NDY1fg"]){
-            
-            NSString *urlAddress = @"http://gentle-wildwood-8274.herokuapp.com/rooms/502766be256da4000200000e/minimal";
-            
-            //Create a URL object.
-            NSURL *url = [NSURL URLWithString:urlAddress];
-            
-            //URL Requst Object
-            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-            
-            //Load the request in the UIWebView.
-            [self.detailViewController.webview loadRequest:requestObj];
-        }
-
-    }
-
-    
-    
 }
 
 @end
