@@ -8,7 +8,7 @@ SlideChat for iPad
 
 The project didn't get any prize but we had fun building it. 
 
-The project has two main components, a web app and an iPad app. Both allow to browse box folders while video-chatting.
+The project has two main components, a [web app](https://github.com/arnaudbenard/SlideChat_webapp) and an [iPad app](https://github.com/FredericJacobs/SlideChat_iPad). Both allow to browse box folders while video-chatting.
 
 Thanks again to Box for hosting this great hackathon.
 
